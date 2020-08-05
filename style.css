@@ -1,0 +1,8 @@
+body{
+    position: relative;
+}
+#success-alert{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
