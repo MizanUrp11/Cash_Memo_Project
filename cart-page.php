@@ -21,16 +21,18 @@
 <div class="container">
 
 
-<h2 class="display-4 mb-3">
-    Cart Page
+<h2 class="font-weight-bold mb-3">
+    Cash Memo
 </h2>
 <table class="table table-hover" id="myTable">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th class="hide" scope="col">#</th>
       <th scope="col">Product Name</th>
       <th scope="col">Unit Price</th>
-      <th scope="col">Delete</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Price</th>
+      <th class="hide" scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -48,19 +50,42 @@
             $unitPrice = $res['unitPrice'];
         ?>
             <tr>
-          <th scope="row"><?php echo $id; ?></th>
-          <td><?php echo $productName; ?></td>
-          <td><?php echo $unitPrice; ?></td>
-          <td><a href="cart-page.php?remove&id=<?php echo $id; ?>" class="btn btn-warning"><i class="far fa-times-circle"></i></a></td>
+          <th class="hide" scope="row"><?php echo $id; ?></th>
+          <td id="pn<?php echo $id; ?>"><?php echo $productName; ?></td>
+          <td id="up<?php echo $id; ?>"><?php echo $unitPrice; ?></td>
+          <td>
+            <input onkeyup="calculate(this);" type="number" class="form-control border border-0" id="<?php echo $id; ?>" placeholder="Amount">
+        </td>
+        <td>
+          <p class="price" id="pr<?php echo $id; ?>">0</p>
+        </td>
+
+          <td class="hide"><a href="cart-page.php?remove&id=<?php echo $id; ?>" class="btn btn-warning"><i class="far fa-times-circle"></i></a></td>
         </tr>
             <?php
                 }
               }
               ?>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td class="hide"></td>
+      <td class="font-weight-bold">Total</td>
+      <td id="total_price" class="font-weight-bold">0</td>
+    </tr>
+  </tfoot>
 
 <div id="cartpage"></div>
 
 <br>
-<a href="result.php" class="btn btn-info">All records</a>
+<div class="mb-3">
+  <a href="result.php" class="btn btn-info hide">Go Back</a>
+  <a onclick="calculate_price();" href="#" class="btn btn-danger ml-2 hide">Calculate</a>
+  <a id="printIt" href="#" class="btn btn-warning ml-2 hide">Print</a>
 </div>
+</div>
+
 <?php include "footer.php"?>
