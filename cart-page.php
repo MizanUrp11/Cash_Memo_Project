@@ -28,11 +28,8 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Age</th>
-      <th scope="col">Home Town</th>
-      <th scope="col">Job</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Unit Price</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>
@@ -47,20 +44,13 @@
         $result = $connection->getAll( "SELECT * FROM info WHERE id=$pe" );
         foreach ( $result as $res ) {
             $id = $res['id'];
-            $firstName = $res['firstName'];
-            $lastName = $res['lastName'];
-            $age = $res['age'];
-            $homeTown = $res['homeTown'];
-            $job = $res['job'];
+            $productName = $res['productName'];
+            $unitPrice = $res['unitPrice'];
         ?>
             <tr>
           <th scope="row"><?php echo $id; ?></th>
-          <td><?php echo $firstName; ?></td>
-          <td><?php echo $lastName; ?></td>
-          <td><?php echo $age; ?></td>
-          <td><?php echo $homeTown; ?></td>
-          <td><?php echo $job; ?></td>
-
+          <td><?php echo $productName; ?></td>
+          <td><?php echo $unitPrice; ?></td>
           <td><a href="cart-page.php?remove&id=<?php echo $id; ?>" class="btn btn-warning"><i class="far fa-times-circle"></i></a></td>
         </tr>
             <?php

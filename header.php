@@ -1,6 +1,9 @@
 <?php
     session_start();
     ob_start();
+    if(!isset($_SESSION['products'])){
+      $_SESSION['products'] = array();
+    }
 ?>
 <!doctype html>
 <html lang="en">

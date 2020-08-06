@@ -48,11 +48,9 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Age</th>
-      <th scope="col">Home Town</th>
-      <th scope="col">Job</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Unit Price</th>
+      <th scope="col">Stock</th>
       <th scope="col">Add to menu</th>
       <th scope="col">Update</th>
       <th scope="col">Delete</th>
@@ -64,20 +62,15 @@
       $result = $connection->getAll( 'SELECT * FROM info' );
       foreach ( $result as $res ) {
           $id = $res['id'];
-          $firstName = $res['firstName'];
-          $lastName = $res['lastName'];
-          $age = $res['age'];
-          $homeTown = $res['homeTown'];
-          $job = $res['job'];
-
+          $productName = $res['productName'];
+          $unitPrice = $res['unitPrice'];
+          $Stock = $res['Stock'];
       ?>
         <tr>
           <th scope="row"><?php echo $id; ?></th>
-          <td><?php echo $firstName; ?></td>
-          <td><?php echo $lastName; ?></td>
-          <td><?php echo $age; ?></td>
-          <td><?php echo $homeTown; ?></td>
-          <td><?php echo $job; ?></td>
+          <td><?php echo $productName; ?></td>
+          <td><?php echo $unitPrice; ?></td>
+          <td><?php echo $Stock; ?></td>
           <td><a id="<?php echo $id ?>" onclick="addToCart(<?php echo $id ?>,this)" href="javascript:;" class="btn <?php if(in_array( $id, $products_array, true )){echo 'btn-secondary';}else{echo 'btn-warning';} ?> addAllert">
         <?php
             $products_array = $_SESSION['products'];
@@ -110,4 +103,7 @@
 </div>
 
 <p class="d-none" id="current_session"><?php echo json_encode($_SESSION['products']); ?></p>
+
+<a href="ds.php?ds=1">Destroy Session</a>
+
 <?php include "footer.php";?>
