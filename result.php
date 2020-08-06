@@ -104,6 +104,4 @@
 
 <p class="d-none" id="current_session"><?php echo json_encode($_SESSION['products']); ?></p>
 
-<a href="ds.php?ds=1">Destroy Session</a>
-
 <?php include "footer.php";?>

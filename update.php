@@ -10,28 +10,22 @@
 
         foreach ( $result as $res ) {
             $id = $res['id'];
-            $firstName = $res['firstName'];
-            $lastName = $res['lastName'];
-            $age = $res['age'];
-            $homeTown = $res['homeTown'];
-            $job = $res['job'];
+            $productName = $res['productName'];
+            $unitPrice = $res['unitPrice'];
+            $Stock = $res['Stock'];
         }
     }
 
     if ( isset( $_POST['update'] ) ) {
-        $firstName = $_POST['firstName'];
-        $lastName = $_POST['lastName'];
-        $age = $_POST['age'];
-        $homeTown = $_POST['homeTown'];
-        $job = $_POST['job'];
+        $productName = $_POST['productName'];
+        $unitPrice = $_POST['unitPrice'];
+        $Stock = $_POST['Stock'];
         $array = array(
-            'firstName' => $firstName,
-            'lastName'  => $lastName,
-            'age'       => $age,
-            'homeTown'  => $homeTown,
-            'job'       => $job,
+            'productName' => $productName,
+            'unitPrice'  => $unitPrice,
+            'Stock'       => $Stock,
         );
-        $connection->updateData( "UPDATE info SET firstName=:firstName, lastName=:lastName, age=:age, homeTown=:homeTown, job=:job WHERE id=$the_id", $array );
+        $connection->updateData( "UPDATE info SET productName=:productName, unitPrice=:unitPrice, Stock=:Stock WHERE id=$the_id", $array );
         header('Location: result.php');
     }
 
@@ -52,15 +46,15 @@
 
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                <label for="firstName">First name</label>
-                <input type="text" class="form-control" name="firstName" id="firstName" value="<?php echo $firstName ?>" required>
+                <label for="productName">Product Name</label>
+                <input type="text" class="form-control" name="productName" id="productName" value="<?php echo $productName ?>" required>
                 <div class="valid-tooltip">
                     Looks good!
                 </div>
                 </div>
                 <div class="col-md-5 mb-3">
-                <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" name="lastName" value="<?php echo $lastName ?>" required>
+                <label for="unitPrice">Unit Price</label>
+                <input type="text" class="form-control" id="unitPrice" name="unitPrice" value="<?php echo $unitPrice ?>" required>
                 <div class="valid-tooltip">
                     Looks good!
                 </div>
@@ -72,36 +66,15 @@
 
 
                 <div class="col-md-3 mb-3">
-                <label for="age">Age</label>
-                <input type="number" class="form-control" id="age" name="age" value="<?php echo $age ?>" required>
+                <label for="Stock">Stock</label>
+                <input type="number" class="form-control" id="Stock" name="Stock" value="<?php echo $Stock ?>" required>
                 <div class="invalid-tooltip">
-                    Please provide a valid age.
+                    Please provide a valid Stock.
                 </div>
                 </div>
-
-
-                <div class="col-md-3 mb-3">
-                <label for="homeTown">Home Town</label>
-                <input type="text" class="form-control" id="homeTown" name="homeTown" value="<?php echo $homeTown ?>" required>
-                <div class="invalid-tooltip">
-                    Please provide a valid city.
-                </div>
-                </div>
-
 
 
             </div>
-
-            <div class="form-row">
-                <div class="col-md-3 mb-3">
-                <label for="job">Job</label>
-                <input type="text" class="form-control" id="job" name="job" value="<?php echo $job ?>" required>
-                <div class="invalid-tooltip">
-                    Please provide a valid job.
-                </div>
-                </div>
-            </div>
-
 
             <button class="btn btn-info" name="update" type="submit">update</button>
 
