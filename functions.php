@@ -4,7 +4,7 @@ class Connection {
     public $conn;
 
     public function __construct() {
-        $this->conn = new PDO( "mysql:host=localhost;dbname=phpajax", 'root', '' );
+        $this->conn = new PDO( "mysql:host=localhost;dbname=freelan6_cash", 'freelan6_cash', '2?]8)f4f?_6@' );
     }
 
     public function insertData( $productName, $unitPrice, $Stock ) {
@@ -14,6 +14,20 @@ class Connection {
             ':unitPrice'   => $unitPrice,
             ':Stock'       => $Stock
         ) );
+    }
+
+    public function insertUser( $userName, $password ) {
+        $statement = $this->conn->prepare( "INSERT INTO users(userName,password) VALUES(:userName,:password)" );
+        $statement->execute( array(
+            ':userName' => $userName,
+            ':password' => $password
+        ) );
+    }
+
+    public function getUsers( $query, $array ) {
+        $statement = $this->conn->prepare( $query );
+        $statement->execute( $array );
+        return $statement->fetchAll();
     }
 
     public function getAll( $query ) {

@@ -40,7 +40,7 @@ $result = $connection->getAll("SELECT * FROM info WHERE id=$q");
           <td><?php echo $age; ?></td>
           <td><?php echo $homeTown; ?></td>
           <td><?php echo $job; ?></td>
-          <td><a target="_blank" href="update.php?update&id=<?php echo $id; ?>" class="btn btn-info">Update</a></td>
+          <td><a href="update.php?update&id=<?php echo $id; ?>" class="btn btn-info">Update</a></td>
           <td><a href="result.php?delete&id=<?php echo $id; ?>" class="btn btn-warning">Delete</a></td>
         </tr>
         

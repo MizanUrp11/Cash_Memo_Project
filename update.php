@@ -80,7 +80,7 @@
 
         </form>
         <br>
-        <a href="result.php" target="_blank" class="btn btn-primary">View Data</a>
+        <a href="result.php" class="btn btn-primary">View Data</a>
 
 
   </div>

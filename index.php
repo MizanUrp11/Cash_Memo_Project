@@ -1,76 +1,52 @@
+<?php include "header.php";?>
 <?php
+
     include "functions.php";
 
     $connection = new Connection;
 
-    if ( isset( $_POST['submit'] ) ) {
-        $productName = $_POST['productName'];
-        $unitPrice = $_POST['unitPrice'];
-        $Stock = $_POST['Stock'];
-        $connection->insertData( $productName, $unitPrice, $Stock );
-        //echo 'inserted';
+    if ( isset( $_POST['adduser'] ) ) {
+        $userName = $_POST['userName'];
+        $password = md5( $_POST['password'] );
+
+        $connection->insertUser( $userName, $password );
+        echo "user added";
     }
 
+    if ( isset( $_POST['login'] ) ) {
+        $userName = $_POST['userName'];
+        $password = md5( $_POST['password'] );
+        $array    = array(
+            ':userName' => $userName,
+            ':password' => $password
+        );
+        $result = $connection->getUsers( "SELECT * FROM users WHERE userName='$userName' AND password='$password'", $array );
+        if(count($result)){
+          $_SESSION['logged_username'] = $userName;
+          header("Location: result.php");
+        }
+    }
 ?>
 
 
-
-<?php include "header.php"; ?>
-
-  <div class="container">
-      
-      <form class="needs-validation" action="" method="POST" validate>
-    
-                <h2 class="display-4">
-                    Ajax Form
-                </h2>
-    
-    
-    
-            <div class="form-row">
-                <div class="col-md-4 mb-3">
-                <label for="productName">Product Name</label>
-                <input type="text" class="form-control" name="productName" id="productName" value="" required>
-                <div class="valid-tooltip">
-                    Looks good!
-                </div>
-                </div>
-                <div class="col-md-5 mb-3">
-                <label for="unitPrice">Unit Price</label>
-                <input type="number" class="form-control" id="unitPrice" name="unitPrice" value="" required>
-                <div class="valid-tooltip">
-                    Looks good!
-                </div>
-                </div>
-            </div>
-
-
-            <div class="form-row">
-
-
-                <div class="col-md-3 mb-3">
-                <label for="Stock">Stock</label>
-                <input type="number" class="form-control" id="Stock" name="Stock" required>
-                <div class="invalid-tooltip">
-                    Please provide a valid Stock.
-                </div>
-                </div>
-
-
-
-            </div>
-
-            <button class="btn btn-primary" name="submit" type="submit">Submit</button>
-
-        </form>
-        <br>
-        <a href="result.php" target="_blank" class="btn btn-primary">View Data</a>
-
-
+<div class="container">
+  <div class="row">
+    <form method="POST" action="index.php">
+      <div class="form-group">
+        <label for="userName">Email address</label>
+        <input type="text" class="form-control" id="userName" name="userName">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" class="form-control" id="password">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">I accept terms and condition</label>
+      </div>
+      <button type="submit" class="btn btn-primary" name="login">Login</button>
+      <button type="submit" class="btn btn-warning" name="adduser">Add User</button>
+    </form>
   </div>
-
-
-
-
-
-<?php include "footer.php"; ?>
+</div>
+<?php include "footer.php";?>
